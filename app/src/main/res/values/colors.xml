@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mind_primary">#2E7D6E</color>
+    <color name="mind_ink">#1C1C1C</color>
+    <color name="mind_ink_soft">#4A4A4A</color>
+    <color name="mind_ink_muted">#7A7A7A</color>
+    <color name="mind_ripple">#332E7D6E</color>
+
+    <color name="mind_primary_soft">#78B2A8</color>
+    <color name="mind_primary_strong">#1F5C51</color>
+    <color name="mind_accent">#4CBFA8</color>
+
 </resources>
