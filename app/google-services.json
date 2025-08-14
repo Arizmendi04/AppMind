@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1096937368157",
+    "project_id": "mindfulness-14402",
+    "storage_bucket": "mindfulness-14402.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096937368157:android:5c0f9f5fe9a1f29b9fbbb4",
+        "android_client_info": {
+          "package_name": "com.example.appmind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096937368157-n4ub5bbtl0f5r2sj2qfful0b4s87bk5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appmind",
+            "certificate_hash": "ca2ccc6d037012d98a411ddfdc57e0a628a48b7b"
+          }
+        },
+        {
+          "client_id": "1096937368157-na0tr51qb36jao9q4i3o52roku4vi0og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV80HzMBFK1d6NmYWDWfLM3-Pb4tNWJE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096937368157-na0tr51qb36jao9q4i3o52roku4vi0og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

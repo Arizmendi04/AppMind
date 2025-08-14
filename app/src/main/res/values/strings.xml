@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">AppMind</string>
+    <string name="app_name">Mindfulness</string>
+
+    <!-- ID de tu app de Facebook (el numérico que copiaste) -->
+    <string name="facebook_app_id">2232859840460392</string>
+
+    <!-- Esquema para Custom Tabs: fb + APP_ID -->
+    <string name="fb_login_protocol_scheme">fb2232859840460392</string>
+
 </resources>

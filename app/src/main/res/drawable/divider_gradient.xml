@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <size android:height="4dp"/>  <!-- tu divider mide 4dp de alto -->
     <gradient
         android:type="linear"
         android:angle="0"
-        android:startColor="@color/mind_primary"
-        android:endColor="@color/mind_primary_dark"/>
+        android:startColor="#256E5C"
+        android:centerColor="#5ED0B6"
+        android:endColor="#3AAE97"/>
+    <!-- opcional: si quieres forzar alto por drawable (no necesario si el View ya mide 4dp) -->
+    <!-- <size android:height="4dp" /> -->
+    <corners android:radius="2dp"/>
 </shape>

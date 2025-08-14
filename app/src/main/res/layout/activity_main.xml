@@ -5,266 +5,167 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:background="@drawable/bg_gradient_mindfulness"
-    android:padding="24dp">
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp">
 
-    <!-- Blobs decorativos (superior derecha / inferior izquierda) -->
+    <!-- Blob superior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end">
-
-            <View
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginTop="-24dp"
-                android:layout_marginEnd="-24dp"
-                android:background="@drawable/blob_soft_right"
-                android:alpha="0.45" />
-        </LinearLayout>
+        android:gravity="end">
+        <View
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="-8dp"
+            android:alpha="0.40"
+            android:background="@drawable/blob_soft_right" />
     </LinearLayout>
 
-    <!-- Panel principal -->
+    <!-- Contenedor del panel (centrado) -->
     <LinearLayout
-        android:id="@+id/panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_panel_elevated"
-        android:elevation="10dp"
-        android:outlineProvider="background"
-        android:padding="24dp"
-        android:orientation="vertical">
+        android:gravity="center">
 
-        <!-- Chip superior opcional -->
-        <TextView
-            android:id="@+id/tvChip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/chip_soft"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:text="Mindfulness · Versión educativa"
-            android:textColor="@color/mind_primary"
-            android:textSize="12sp"
-            android:fontFamily="sans-serif-medium" />
-
-        <!-- Logo opcional -->
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            app:srcCompat="@drawable/ic_mindfulness_logo"
-            android:contentDescription="Logo de Mindfulness"
-            app:tint="@color/mind_primary" />
-
-        <!-- Título -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Bienvenido a Mindfulness"
-            android:textAlignment="center"
-            android:textColor="@color/mind_ink"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-medium" />
-
-        <!-- Subtítulo -->
-        <TextView
-            android:id="@+id/tvSubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Respira, enfoca y acompaña tu bienestar día a día."
-            android:textAlignment="center"
-            android:textColor="@color/mind_ink_soft"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif" />
-
-        <!-- Separador degradado -->
-        <View
-            android:layout_width="80dp"
-            android:layout_height="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/divider_gradient" />
-
-        <!-- Bullets con marcadores suaves -->
+        <!-- Panel con borde degradado y esquinas grandes -->
         <LinearLayout
+            android:id="@+id/panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_panel_elevated"
+            android:elevation="12dp"
+            android:outlineProvider="background"
+            android:padding="24dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Chip -->
+            <TextView
+                android:id="@+id/tvChip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:background="@drawable/chip_soft"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="Mindfulness · Versión app"
+                android:textColor="@color/mind_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
 
-                <View
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="@drawable/dot_primary"
-                    android:layout_marginEnd="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Técnicas guiadas y registro emocional"
-                    android:textColor="@color/mind_ink"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <View
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="@drawable/dot_primary"
-                    android:layout_marginEnd="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Actividades en el aula y seguimiento"
-                    android:textColor="@color/mind_ink"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <View
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="@drawable/dot_primary"
-                    android:layout_marginEnd="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Notificaciones y recompensas"
-                    android:textColor="@color/mind_ink"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Acciones -->
-        <LinearLayout
-            android:id="@+id/actions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <!-- Botón primario con degradado -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Iniciar sesión"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
-                android:insetTop="14dp"
-                android:insetBottom="14dp"
-                android:background="@drawable/btn_primary_gradient"
-                app:iconPadding="12dp"
-                android:textColor="@android:color/white" />
-
-            <!-- Botón secundario con borde degradado suave -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <!-- Logo (sin tint para respetar tu color) -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"
-                android:text="Crear cuenta"
-                android:textAllCaps="false"
+                android:src="@drawable/ic_mindfulness_logo"
+                android:contentDescription="Logo de Mindfulness" />
+
+            <!-- Bienvenida -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Bienvenido a Mindfulness"
+                android:textColor="@color/mind_ink"
+                android:textSize="26sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
-                android:background="@drawable/btn_outline_soft"
-                android:textColor="@color/mind_primary" />
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
-                android:id="@+id/tvGuest"
-                android:layout_width="match_parent"
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Continuar como invitado"
-                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:text="Respira, enfoca y acompaña tu bienestar día a día."
                 android:textColor="@color/mind_ink_soft"
-                android:textSize="13sp"
-                android:fontFamily="sans-serif-medium" />
-        </LinearLayout>
+                android:textSize="14sp" />
 
-        <!-- Aviso de términos -->
-        <TextView
-            android:id="@+id/tvTerms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Al continuar aceptas los Términos y el Aviso de Privacidad."
-            android:textAlignment="center"
-            android:textColor="@color/mind_ink_muted"
-            android:textSize="12sp"
-            android:fontFamily="sans-serif" />
+            <!-- Separador suave -->
+            <View
+                android:layout_width="100dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/divider_gradient" />
+
+            <!-- Acceso por iconos (solo Google/Facebook) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnGoogle"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/bg_circle_white_shadow"
+                    android:contentDescription="Continuar con Google"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_google_48" />
+
+                <ImageButton
+                    android:id="@+id/btnFacebook"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_circle_facebook_shadow"
+                    android:contentDescription="Continuar con Facebook"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_facebook_48" />
+            </LinearLayout>
+
+            <!-- Aviso -->
+            <TextView
+                android:id="@+id/tvTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Al continuar aceptas los Términos y el Aviso de Privacidad."
+                android:textColor="@color/mind_ink_muted"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Marca inferior y blob -->
+    <!-- Blob inferior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="start|bottom">
-
         <View
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginStart="-36dp"
-            android:layout_marginBottom="-36dp"
-            android:background="@drawable/blob_soft_left"
-            android:alpha="0.35" />
+            android:layout_width="176dp"
+            android:layout_height="176dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="6dp"
+            android:alpha="0.30"
+            android:background="@drawable/blob_soft_left" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Mindfulness · Bienestar"
+        android:layout_marginBottom="8dp"
+        android:text="- Mindfulness -"
         android:textColor="@color/mind_ink_soft"
         android:textSize="12sp"
         android:fontFamily="sans-serif-medium" />
-
 </LinearLayout>
