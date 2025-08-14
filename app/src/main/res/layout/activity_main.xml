@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/welcome_root"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -64,9 +64,9 @@
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
-            android:src="@drawable/ic_mindfulness_logo"
+            app:srcCompat="@drawable/ic_mindfulness_logo"
             android:contentDescription="Logo de Mindfulness"
-            android:tint="@color/mind_primary" />
+            app:tint="@color/mind_primary" />
 
         <!-- Título -->
         <TextView

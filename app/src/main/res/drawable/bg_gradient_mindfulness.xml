@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<gradient xmlns:android="http://schemas.android.com/apk/res/android"
-    android:type="linear"
-    android:startColor="#E6F3F0"
-    android:centerColor="#D9F0EB"
-    android:endColor="#EAF1FF"
-    android:angle="135"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- esquinas opcionales -->
+    <corners android:radius="0dp" />
+
+    <!-- ESTE es el gradiente correcto -->
+    <gradient
+        android:startColor="@color/mind_primary"
+        android:endColor="@color/mind_primary_dark"
+        android:angle="45"
+        android:type="linear" />
+</shape>
