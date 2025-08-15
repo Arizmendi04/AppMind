@@ -1,0 +1,18 @@
+<resources>
+    <!-- Chip lleno con cian -->
+    <style name="App.Chip.Filled" parent="Widget.Material3.Chip.Assist.Elevated">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="chipBackgroundColor">@color/accent_cyan</item>
+        <item name="chipIconTint">@android:color/white</item>
+        <item name="rippleColor">@color/nav_item_ripple</item>
+        <item name="elevation">2dp</item>
+    </style>
+
+    <!-- Chip contorneado en cian -->
+    <style name="App.Chip.Outline" parent="Widget.Material3.Chip.Assist">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="chipStrokeColor">@color/accent_cyan</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="rippleColor">@color/nav_item_ripple</item>
+    </style>
+</resources>

@@ -13,5 +13,20 @@
     <color name="mind_ink">#1C1C1C</color>
     <color name="mind_ink_soft">#4B4B4B</color>
     <color name="mind_ink_muted">#7E7E7E</color>
+    <!-- tarjetas -->
+    <color name="fab_tint">#6C63FF</color>
+    <color name="nav_bg">#0F1324</color>            <!-- drawer oscuro -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="card_bg_dark">#161B2E</color>      <!-- cards -->
+    <color name="accent_cyan">#00D1FF</color>       <!-- acento que combina -->
+    <color name="accent_purple">#6C63FF</color>
+    <color name="accent_blue">#0A6CFF</color>
+
+    <color name="status_disconnected_bg">#FFF3C4</color>   <!-- ámbar claro -->
+    <color name="status_disconnected_text">#5B4100</color>
+
+    <color name="status_connected_bg">#1DB954</color>         <!-- verde Spotify-ish -->
+    <color name="status_connected_text">#FFFFFF</color>
 
 </resources>

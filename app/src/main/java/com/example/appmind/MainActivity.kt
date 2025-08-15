@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -52,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Ajuste de barras del sistema (tu layout ya usa @id/main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val sb = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(sb.left, sb.top, sb.right, sb.bottom)
@@ -62,60 +63,60 @@ class MainActivity : AppCompatActivity() {
         // Firebase
         auth = FirebaseAuth.getInstance()
 
-        // ---- Google Sign-In (para Firebase) ----
+        // === FACEBOOK: inicialización antes de usar LoginManager ===
+        FacebookSdk.setApplicationId(getString(R.string.facebook_app_id))
+        FacebookSdk.setClientToken(getString(R.string.facebook_client_token))
+        try { FacebookSdk.setAutoInitEnabled(true) } catch (_: Throwable) {}
+        try { FacebookSdk.fullyInitialize() } catch (_: Throwable) { FacebookSdk.sdkInitialize(applicationContext) }
+        try { AppEventsLogger.activateApp(application) } catch (_: Throwable) {}
+
+        // CallbackManager + callback de Facebook (una sola vez)
+        fbCallbackManager = CallbackManager.Factory.create()
+        LoginManager.getInstance().registerCallback(
+            fbCallbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    val credential = FacebookAuthProvider.getCredential(result.accessToken.token)
+                    auth.signInWithCredential(credential)
+                        .addOnCompleteListener(this@MainActivity) { task ->
+                            if (task.isSuccessful) {
+                                toast("Bienvenido, ${auth.currentUser?.displayName ?: "Usuario"}")
+                                goToHome()
+                            } else {
+                                Log.e("FBAuth", "Firebase con Facebook falló", task.exception)
+                                toast("No se pudo iniciar con Facebook")
+                            }
+                        }
+                }
+                override fun onCancel() { toast("Facebook cancelado") }
+                override fun onError(error: FacebookException) {
+                    Log.e("FacebookLogin", "Error", error)
+                    toast("Error de Facebook: ${error.localizedMessage}")
+                }
+            }
+        )
+
+        // Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) // viene del google-services.json
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleClient = GoogleSignIn.getClient(this, gso)
 
-        // ---- Facebook Login ----
-        fbCallbackManager = CallbackManager.Factory.create()
-
-        // Clicks de los botones
+        // Botones
         findViewById<ImageButton>(R.id.btnGoogle).setOnClickListener {
-            val intent = googleClient.signInIntent
-            googleLauncher.launch(intent)
+            googleLauncher.launch(googleClient.signInIntent)
         }
-
         findViewById<ImageButton>(R.id.btnFacebook).setOnClickListener {
-            // permisos mínimos recomendados
             LoginManager.getInstance()
                 .logInWithReadPermissions(this, listOf("email", "public_profile"))
-
-            // registra el callback para este flujo
-            LoginManager.getInstance().registerCallback(fbCallbackManager,
-                object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(result: LoginResult) {
-                        val token = result.accessToken
-                        val credential = FacebookAuthProvider.getCredential(token.token)
-                        auth.signInWithCredential(credential)
-                            .addOnCompleteListener(this@MainActivity) { task ->
-                                if (task.isSuccessful) {
-                                    toast("Bienvenido, ${auth.currentUser?.displayName ?: "Usuario"}")
-                                    goToHome()
-                                } else {
-                                    Log.e("FBAuth", "Firebase con Facebook falló", task.exception)
-                                    toast("No se pudo iniciar con Facebook")
-                                }
-                            }
-                    }
-
-                    override fun onCancel() {
-                        toast("Facebook cancelado")
-                    }
-
-                    override fun onError(error: FacebookException) {
-                        Log.e("FacebookLogin", "Error", error)
-                        toast("Error de Facebook: ${error.localizedMessage}")
-                    }
-                })
         }
+    }
 
-        // Si ya hay sesión, puedes saltar directo
-        auth.currentUser?.let {
-            // goToHome() // descomenta si quieres saltar la pantalla al tener sesión
-        }
+    // Redirige automáticamente si ya hay sesión
+    override fun onStart() {
+        super.onStart()
+        auth.currentUser?.let { goToHome() }
     }
 
     private fun signInFirebaseWithGoogle(idToken: String) {
@@ -133,14 +134,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToHome() {
-        // TODO: navega a tu actividad principal
-        // startActivity(Intent(this, HomeActivity::class.java))
-        // finish()
+        // Limpia el back stack para que no vuelva a Main con "Atrás"
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        startActivity(intent)
+        finish() // cierra MainActivity
     }
 
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-    // Necesario para que Facebook reciba el resultado del Activity
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         fbCallbackManager.onActivityResult(requestCode, resultCode, data)

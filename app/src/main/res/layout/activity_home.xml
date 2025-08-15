@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <LinearLayout
+        android:id="@+id/home_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_home_gradient"
+        android:fitsSystemWindows="true">
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            app:title="Inicio"
+            app:navigationIconTint="@android:color/white"
+            app:titleCentered="false"
+            app:titleTextColor="@android:color/white" />
+
+        <!-- Contenido -->
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- HERO / EMPAREJAMIENTO -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="10dp"
+                        app:strokeWidth="0dp"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_hero_gradient_alt">
+
+                            <!-- Logo con círculo blanco -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_margin="16dp"
+                                android:layout_gravity="top|start"
+                                android:background="@drawable/bg_white_circle">
+
+                                <ImageView
+                                    android:id="@+id/ivMindfulness"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="8dp"
+                                    android:src="@drawable/ic_mindfulness_logo"
+                                    android:contentDescription="@string/app_name"
+                                    android:alpha="0.95"/>
+                            </FrameLayout>
+
+                            <!-- Texto + fila estado/emparejar -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="22dp"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Conecta tu sensor rítmico"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/tvHeroSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Empareja por Bluetooth para empezar a medir"
+                                    android:textColor="@android:color/white"
+                                    android:alpha="0.9"
+                                    android:textSize="16sp"
+                                    android:layout_marginTop="6dp"/>
+
+                                <!-- ESTADO + EMPAREJAR (no se empujan) -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="18dp"
+                                    android:baselineAligned="false"
+                                    android:weightSum="1">
+
+                                    <!-- Contenedor flexible para el chip -->
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="start|center_vertical">
+
+                                        <com.google.android.material.chip.Chip
+                                            android:id="@+id/chipStatus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="40dp"
+                                            android:text="Estado: Desconectado"
+                                            android:textColor="@color/status_disconnected_text"
+                                            android:maxLines="1"
+                                            android:ellipsize="end"
+                                            app:chipIcon="@drawable/ic_bluetooth_24"
+                                            app:chipIconTint="@color/status_disconnected_text"
+                                            app:chipBackgroundColor="@color/status_disconnected_bg"
+                                            app:chipStrokeColor="@android:color/transparent"
+                                            app:chipStartPadding="10dp"
+                                            app:chipEndPadding="10dp"
+                                            app:iconStartPadding="6dp"
+                                            app:textStartPadding="4dp"
+                                            app:textEndPadding="6dp"/>
+                                    </LinearLayout>
+
+                                    <!-- Botón emparejar compacto -->
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/btnPair"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="44dp"
+                                        android:minWidth="0dp"
+                                        android:paddingStart="14dp"
+                                        android:paddingEnd="14dp"
+                                        android:layout_marginStart="12dp"
+                                        android:text="Emparejar"
+                                        android:textAllCaps="false"
+                                        android:textSize="15sp"
+                                        app:icon="@drawable/ic_bluetooth_24"
+                                        app:iconPadding="6dp"
+                                        app:iconTint="@android:color/white"
+                                        app:backgroundTint="@color/accent_cyan"
+                                        android:textColor="@android:color/white"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- SECCIÓN LECTURA ACTUAL -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="6dp"
+                        app:cardBackgroundColor="@color/card_bg_dark"
+                        app:strokeColor="@color/accent_blue"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="18dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lectura actual"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:textSize="17sp"/>
+
+                            <TextView
+                                android:id="@+id/tvMetricMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:textColor="@color/accent_cyan"
+                                android:textStyle="bold"
+                                android:textSize="36sp"
+                                android:layout_marginTop="6dp"/>
+
+                            <TextView
+                                android:id="@+id/tvMetricSub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BPM / Ritmo"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvLastConnection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Última conexión: --"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- GRID 2 COLUMNAS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="18dp"
+                        android:weightSum="2">
+
+                        <!-- Calibración -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="6dp"
+                            app:cardBackgroundColor="@color/card_bg_dark">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calibración"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="16sp"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ajusta niveles para lecturas precisas"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="4dp"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnCalibrate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="44dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Calibrar"
+                                    android:textAllCaps="false"
+                                    app:backgroundTint="@color/accent_purple"
+                                    android:textColor="@android:color/white"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Historial -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="6dp"
+                            app:cardBackgroundColor="@color/card_bg_dark">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Historial"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="16sp"/>
+
+                                <TextView
+                                    android:id="@+id/tvHistoryHint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Aún no hay sesiones"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="6dp"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginBottom="8dp"/>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- DRAWER -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="@color/nav_bg"
+        app:itemIconTint="@color/nav_item_tint"
+        app:itemTextColor="@color/nav_item_tint"
+        app:itemRippleColor="@color/nav_item_ripple"
+        app:headerLayout="@layout/nav_header_home"
+        app:menu="@menu/drawer_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>

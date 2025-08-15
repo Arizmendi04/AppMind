@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">Mindfulness</string>
+    <string name="app_name">AppMind</string>
 
-    <!-- ID de tu app de Facebook (el numérico que copiaste) -->
+    <!-- Facebook -->
     <string name="facebook_app_id">2232859840460392</string>
-
-    <!-- Esquema para Custom Tabs: fb + APP_ID -->
+    <string name="facebook_client_token">0711b69e49842c3ad0e19816fbf560a9</string>
     <string name="fb_login_protocol_scheme">fb2232859840460392</string>
+
+    <!-- Google -->
+    <string name="default_web_client_id">1096937368157-na0tr51qb36jao9q4i3o52roku4vi0og.apps.googleusercontent.com</string>
+
+    <string name="nav_open">Abrir menú</string>
+    <string name="nav_close">Cerrar menú</string>
 
 </resources>
